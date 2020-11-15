@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Pogoda 2</string>
+    <string name="pattern_dashed">Пунктир</string>
+    <string name="pattern_dotted">Пунктир</string>
+    <string name="pattern_mixed">Смешанный</string>
+    <string name="pattern_solid">Сплошной</string>
+    <string name="lalala">Ля-ля-ля</string>
+</resources>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="maaainviewmodel"
+            type="com.example.pogoda2.MainViewModel" />
+    </data>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#BAA6E8">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/weather_recycler_view"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:layout_constraintWidth_percent="0.2"
+                android:background="#FFFFFF"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="NestedWeights" />
+
+            <fragment
+                android:id="@+id/myNavHostFragment1"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                app:defaultNavHost="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/weather_recycler_view"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:navGraph="@navigation/navigation" />
+
+            <ImageButton
+                android:id="@+id/btnEnterCityName"
+                android:contentDescription="@string/lalala"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="6dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="4dp"
+                android:alpha="0.6"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnMyLocationTemp"
+                app:srcCompat="@mipmap/ic_launcher_edit_text" />
+
+            <ImageButton
+                android:id="@+id/btnLocationOnMap"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="6dp"
+                android:layout_marginEnd="4dp"
+                android:alpha="0.6"
+                android:contentDescription="@string/lalala"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnEnterCityName"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@mipmap/ic_launcher_edit_location" />
+
+            <ImageButton
+                android:id="@+id/btnMyLocationTemp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="6dp"
+                android:contentDescription="@string/lalala"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:alpha="0.6"
+                app:srcCompat="@mipmap/ic_launcher_my_location_now" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
