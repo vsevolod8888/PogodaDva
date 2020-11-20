@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/weatherDetailFragment2"
+    app:startDestination="@id/weatherDetailFragment3"
     tools:ignore="UnusedNavigation">
 
     <fragment
-        android:id="@+id/weatherDetailFragment2"
+        android:id="@+id/weatherDetailFragment3"
         android:name="com.example.pogoda2.WeatherDetailFragment"
         android:label="WeatherDetailFragment">
 
@@ -16,12 +16,12 @@
             android:defaultValue="-1"
             app:argType="integer" />
         <action
-            android:id="@+id/action_weatherDetailFragment2_to_mapFragment"
+            android:id="@+id/action_weatherDetailFragment3_to_mapFragment"
             app:destination="@id/mapFragment" />
     </fragment>
     <action
-        android:id="@+id/action_global_weatherDetailFragment2"
-        app:destination="@id/weatherDetailFragment2" />
+        android:id="@+id/action_global_weatherDetailFragment3"
+        app:destination="@id/weatherDetailFragment3" />
     <fragment
         android:id="@+id/mapFragment"
         android:name="com.example.pogoda2.MapFragment"

@@ -31,7 +31,7 @@ fun TextView.setSleepQualityString(item: ForViewModelWeather?) {
     item?.let {
         var ggg:Double = item.tempDay
         val result = ggg.roundToInt()
-        text = "$result °"
+        text = "$result °C"
     }
 }
 
@@ -60,21 +60,27 @@ fun TextView.setDayToday(item: ForViewModelWeather?) {
 @BindingAdapter("temperatureMorning")                                            // темп. утро
 fun TextView.setTemperatureMorn(item: ForViewModelWeather?) {
     item?.let {
-        text = item.tempMorn.toString()
+        var ggg:Double = item.tempMorn
+        val result = ggg.roundToInt()
+        text = "$result°"
     }
 }
 
 @BindingAdapter("temperatureDay")                                                 // темп. день
 fun TextView.setTemperatureDay(item: ForViewModelWeather?) {
     item?.let {
-        text = item.tempDay.toString()
+        var ggg:Double = item.tempDay
+        val result = ggg.roundToInt()
+        text = "$result°"
     }
 }
 
 @BindingAdapter("temperatureEvening")                                            // темп. вечер
 fun TextView.setTemperatureEvening(item: ForViewModelWeather?) {
     item?.let {
-        text = item.tempEvening.toString()
+        var ggg:Double = item.tempEvening
+        val result = ggg.roundToInt()
+        text = "$result°"
     }
 }
 
@@ -100,6 +106,7 @@ fun TextView.setWeatherDescription(item: ForViewModelWeather?) {
 @BindingAdapter("windSpeed")                                            // скорсть ветра
 fun TextView.setWindSpeed(item: ForViewModelWeather?) {
     item?.let {
+
         text = item.windSpeed.toString() + " м/с"
     }
 }
@@ -107,14 +114,18 @@ fun TextView.setWindSpeed(item: ForViewModelWeather?) {
 @BindingAdapter("humidity")                                            // влажность
 fun TextView.setHumidity(item: ForViewModelWeather?) {
     item?.let {
-        text = item.humidity.toString()
+        text = item.humidity.toString() + " %"
     }
 }
 
+@SuppressLint("SetTextI18n")
 @BindingAdapter("pressure")                                            // давление
 fun TextView.setPressure(item: ForViewModelWeather?) {
     item?.let {
-        text = item.pressure.toString()
+        val b:Int = item.pressure
+        val c:Int = ((b*735.559)/1000).roundToInt()
+        text = "$c мм.рт.ст."
+      //  text = item.pressure.toString()
     }
 }
 

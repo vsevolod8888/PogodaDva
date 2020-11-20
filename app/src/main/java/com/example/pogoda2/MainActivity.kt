@@ -7,7 +7,10 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Looper
 import android.provider.Settings
+import android.view.Gravity
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -63,29 +66,27 @@ class MainActivity() : AppCompatActivity() {
         })               /// создал адаптер
 
         viewModel.choosendetail.observe(this, androidx.lifecycle.Observer {
-            navController.navigate(R.id.weatherDetailFragment2)
+            navController.navigate(R.id.weatherDetailFragment3)
         })
         binding.weatherRecyclerView.adapter = adapter
 
         binding.lifecycleOwner = this
 
         viewModel.weatherrr.observe(this, Observer {
-            it?.let {
-                adapter.submitList(it)
-                viewModel.onClickDetail(it[0])
-                binding.btnMyLocationTemp.visibility = View.VISIBLE// отобр.первый элемент
+            if(it.isNotEmpty()){
+                    adapter.submitList(it)
+                    viewModel.onClickDetail(it[0])
+                    binding.btnMyLocationTemp.visibility = View.VISIBLE// отобр.первый элемент
+                adapter.selectItemPosition(0)
+
             }
+
         })
         viewModel.errorr.observe(this, Observer {
             Toast.makeText(applicationContext, "Ошибка при загрузке данных $it", Toast.LENGTH_LONG)
                 .show()
         })
-//       viewModel.isClicked.observe(this, Observer {
-//            if (it == true) {
-//                adapter.
-//
-//            }
-//       })
+
 
 
         locationCallback = object : LocationCallback() {
@@ -122,8 +123,9 @@ class MainActivity() : AppCompatActivity() {
 
         }
         binding.btnEnterCityName.setOnClickListener() {
-            //this.findNavController(R.id.myNavHostFragment1).navigate(R.id.enterCityNameFragment)
             var dialog = CityNameDialogFragment()
+
+
             dialog.show(supportFragmentManager, "customDialog")
             //dialog.dismiss()
         }
@@ -132,11 +134,6 @@ class MainActivity() : AppCompatActivity() {
             this.findNavController(R.id.myNavHostFragment1).navigate(R.id.mapFragment)
             binding.btnMyLocationTemp.visibility = View.INVISIBLE
         }
-
-
-        // initWeather()
-
-
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -146,7 +143,7 @@ class MainActivity() : AppCompatActivity() {
 
     override fun onBackPressed() {
         binding.btnMyLocationTemp.visibility =
-            View.VISIBLE  // при нажатии назад делаем кнопку опять видимой
+            View.VISIBLE
         super.onBackPressed()
     }
 
@@ -157,12 +154,9 @@ class MainActivity() : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        //checkPermission()
+
     }
 
-//    fun initWeather() {
-//        viewModel.onClickDetailFirst()
-//    }
 
     private fun startLocationUpdates() {
         val locationRequest = LocationRequest.create()?.apply {
@@ -178,13 +172,6 @@ class MainActivity() : AppCompatActivity() {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             return
         }
         fusedLocationClient.requestLocationUpdates(

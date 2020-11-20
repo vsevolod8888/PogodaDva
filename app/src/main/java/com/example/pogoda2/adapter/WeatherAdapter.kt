@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pogoda2.MainViewModel
+import com.example.pogoda2.R
 import com.example.pogoda2.databinding.WeatherViewHolderBinding
 import com.example.pogoda2.repozitory_and_dataanswer.ForViewModelWeather
 import kotlinx.android.synthetic.main.weather_view_holder.view.*
@@ -16,6 +17,7 @@ import kotlinx.android.synthetic.main.weather_view_holder.view.*
 
 class WeatherAdapter(val clickListener: WeatherListener) :
     ListAdapter<ForViewModelWeather, WeatherAdapter.WeatherHolder>(SleepNightDiffCallback()) {
+    var selectedItemPosition:Int = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherHolder {
         return WeatherHolder.from(parent)
@@ -23,18 +25,25 @@ class WeatherAdapter(val clickListener: WeatherListener) :
 
     override fun onBindViewHolder(holder: WeatherHolder, position: Int) {
         val item = getItem(position)
-//        if (position == selectedItemPosition) {
-//            holder.itemView.constraintLayoutHolder.setBackgroundColor(Color.WHITE)
-//           // notifyDataSetChanged()
-//        }
+        if (position == selectedItemPosition) {
+            holder.itemView.constraintLayoutHolder.setBackgroundColor(Color.WHITE)
+        }else{
+            holder.itemView.constraintLayoutHolder.setBackgroundColor(holder.itemView.context.resources.getColor(
+                R.color.colorAccent))
+        }
         holder.itemView.setOnClickListener {
 
             clickListener.onClick(item)
+            selectItemPosition(position)
         }
         holder.bind(
             item
 
         )
+    }
+    fun selectItemPosition(itemPos:Int){
+        selectedItemPosition = itemPos
+        notifyDataSetChanged()
     }
 
     class WeatherHolder(val binding: WeatherViewHolderBinding) :

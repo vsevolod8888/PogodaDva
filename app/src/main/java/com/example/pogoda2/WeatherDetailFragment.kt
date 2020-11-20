@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.pogoda2.databinding.WeatherDetailFragmentBinding
 
+
 class WeatherDetailFragment : Fragment() {
 
     companion object {
