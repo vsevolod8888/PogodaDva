@@ -13,7 +13,7 @@
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/constraintLayoutHolder"
-    android:background="@color/colorAccent"
+    android:background="#F8CD97"
     android:layout_width="80dp"
     android:layout_height="80dp">
 
@@ -30,24 +30,26 @@
         android:id="@+id/tvDayToday"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="1dp"
+        android:gravity="center_horizontal"
         android:text="Text 1"
-        android:paddingStart="10sp"
-        android:paddingEnd="1sp"
-        android:layout_margin="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp"
-        app:ourTextDateToday="@{weather}"/>
+        app:ourTextDateToday="@{weather}" />
 
     <TextView
         android:id="@+id/tvTemperature"
         android:layout_width="match_parent"
         android:layout_height="30dp"
+        android:layout_margin="1dp"
+        android:gravity="center_horizontal"
         android:text="Text 2"
-        android:layout_margin="5dp"
-        android:textSize="20sp"
-        app:tvTemperature="@{weather}"
+        android:textSize="23sp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:tvTemperature="@{weather}" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

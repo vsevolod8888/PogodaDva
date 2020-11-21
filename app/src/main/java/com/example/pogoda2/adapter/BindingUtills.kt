@@ -1,8 +1,10 @@
 package com.example.pogoda2.adapter
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.example.pogoda2.repozitory_and_dataanswer.ForViewModelWeather
@@ -18,8 +20,8 @@ fun TextView.setSleepDurationFormatted(list: ForViewModelWeather?): CharSequence
         val dayToday: Int = list.sunrise
         val date = Date(dayToday * 1000L)
         val locale = Locale("ru", "RU")
-        val format2: DateFormat = SimpleDateFormat("EEE, dd/MM",locale)
-        val daytoday: String = format2.format(date)
+        val format2: DateFormat = SimpleDateFormat("EEE, dd.MM", locale)          //**************************************
+        val daytoday: String = format2.format(date).capitalize()
         text = daytoday
     }
     return text
@@ -29,7 +31,7 @@ fun TextView.setSleepDurationFormatted(list: ForViewModelWeather?): CharSequence
 @BindingAdapter("tvTemperature")
 fun TextView.setSleepQualityString(item: ForViewModelWeather?) {
     item?.let {
-        var ggg:Double = item.tempDay
+        val ggg:Double = item.tempDay
         val result = ggg.roundToInt()
         text = "$result °C"
     }
@@ -46,13 +48,15 @@ fun TextView.setTimeSunrise(item: ForViewModelWeather?) {
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @BindingAdapter("dayToday")                                            // дата
 fun TextView.setDayToday(item: ForViewModelWeather?) {
     item?.let {
         val sunriseTime: Int = item.sunrise
+        val locale = Locale("ru", "RU")
         val date = Date(sunriseTime * 1000L)
-        val format2: DateFormat = SimpleDateFormat(("yyyy-MM-dd"))
-        val daytoday: String = format2.format(date)
+        val format2: DateFormat = SimpleDateFormat(("EEEE, dd MMMM"), locale)
+        val daytoday: String = format2.format(date).capitalize()
         text = daytoday
     }
 }
@@ -60,7 +64,7 @@ fun TextView.setDayToday(item: ForViewModelWeather?) {
 @BindingAdapter("temperatureMorning")                                            // темп. утро
 fun TextView.setTemperatureMorn(item: ForViewModelWeather?) {
     item?.let {
-        var ggg:Double = item.tempMorn
+        val ggg:Double = item.tempMorn
         val result = ggg.roundToInt()
         text = "$result°"
     }
@@ -69,7 +73,7 @@ fun TextView.setTemperatureMorn(item: ForViewModelWeather?) {
 @BindingAdapter("temperatureDay")                                                 // темп. день
 fun TextView.setTemperatureDay(item: ForViewModelWeather?) {
     item?.let {
-        var ggg:Double = item.tempDay
+        val ggg:Double = item.tempDay
         val result = ggg.roundToInt()
         text = "$result°"
     }
@@ -78,7 +82,7 @@ fun TextView.setTemperatureDay(item: ForViewModelWeather?) {
 @BindingAdapter("temperatureEvening")                                            // темп. вечер
 fun TextView.setTemperatureEvening(item: ForViewModelWeather?) {
     item?.let {
-        var ggg:Double = item.tempEvening
+        val ggg:Double = item.tempEvening
         val result = ggg.roundToInt()
         text = "$result°"
     }
@@ -87,7 +91,8 @@ fun TextView.setTemperatureEvening(item: ForViewModelWeather?) {
 @BindingAdapter("timeSunset")                                            // время закат
 fun TextView.setTimeSunset(item: ForViewModelWeather?) {
     item?.let {
-        val format: DateFormat = SimpleDateFormat("HH:mm")
+        val locale = Locale("ru", "RU")
+        val format: DateFormat = SimpleDateFormat("HH:mm", locale)
         val sunSetTime: Int = item.sunset
         val date2 = Date(sunSetTime * 1000L)
         val formatted2: String = format.format(date2)
@@ -98,7 +103,7 @@ fun TextView.setTimeSunset(item: ForViewModelWeather?) {
 @BindingAdapter("weatherDescription")                                            // описание погоды
 fun TextView.setWeatherDescription(item: ForViewModelWeather?) {
     item?.let {
-        text = item.description.toString()
+        text = item.description.capitalize()
     }
 }
 
@@ -125,7 +130,6 @@ fun TextView.setPressure(item: ForViewModelWeather?) {
         val b:Int = item.pressure
         val c:Int = ((b*735.559)/1000).roundToInt()
         text = "$c мм.рт.ст."
-      //  text = item.pressure.toString()
     }
 }
 
@@ -133,7 +137,7 @@ fun TextView.setPressure(item: ForViewModelWeather?) {
 
 @BindingAdapter("imageFromInterneeeet")
 fun setBackgroundImage(view: ImageView, item: ForViewModelWeather?) {
-    var imageUrl: String =
+    val imageUrl: String =
     when (item?.idImage) {
         "01d" -> "https://openweathermap.org/img/wn/01d@4x.png"
         "01n" -> "https://openweathermap.org/img/wn/01n@4x.png"
@@ -167,11 +171,5 @@ fun setBackgroundImage(view: ImageView, item: ForViewModelWeather?) {
         .load(imageUrl)
         .into(view)
 }
-@BindingAdapter("tvCityName")
-fun TextView.setCityNameString(item: ForViewModelWeather?) {
-    item?.let {
-        var ggg:String = item.cityName
-        text = ggg
-    }
-}
+
 
