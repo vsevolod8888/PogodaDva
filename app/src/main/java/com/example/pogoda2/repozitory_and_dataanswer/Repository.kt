@@ -14,19 +14,13 @@ import retrofit2.Response
 
 class Repository(private val database: OurDatabase) {
 
-   // val errorMessage = MutableLiveData<String>()
+
    val errorMessage = MutableLiveData<String>()
 
     val weather: LiveData<List<ForViewModelWeather>> =
         Transformations.map(database.weatherdao.getWeather()) {
             it.asDomainModel() //  используйте Transformations.map для преобразования списка объектов базы данных в список объектов домена
         }
-    fun refreshItem(){
-
-    }
-
-
-
 
     suspend fun refreshWeatherByCityName(city: String) {
         withContext(Dispatchers.IO) {

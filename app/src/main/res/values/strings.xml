@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Pogoda 2</string>
+    <string name="app_name">Прогноз погоды</string>
     <string name="pattern_dashed">Пунктир</string>
     <string name="pattern_dotted">Пунктир</string>
     <string name="pattern_mixed">Смешанный</string>

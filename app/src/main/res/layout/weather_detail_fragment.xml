@@ -13,7 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorWhite"
+        android:background="@color/primaryLightColor"
         android:orientation="vertical">
 
         <LinearLayout
@@ -24,6 +24,7 @@
 
             <TextView
                 android:id="@+id/textViewCityName"
+                android:textAppearance="?attr/textAppearanceHeadline6"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
@@ -37,10 +38,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.5"
+                android:textSize="25sp"
                 android:gravity="center_horizontal"
                 android:text="День и дата"
-                android:textSize="25sp"
-
+                android:textAppearance="?attr/textAppearanceHeadline6"
                 app:dayToday="@{weatherdetail}" />
 
             <ImageView
@@ -56,18 +57,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.5"
+                android:fontFamily="@font/lobster"
                 android:gravity="center"
                 android:text="Описание"
                 android:textSize="25sp"
                 app:weatherDescription="@{weatherdetail}" />
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.6"
             android:orientation="vertical">
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"

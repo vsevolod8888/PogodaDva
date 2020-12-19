@@ -29,7 +29,7 @@ class WeatherAdapter(val clickListener: WeatherListener) :
             holder.itemView.constraintLayoutHolder.setBackgroundColor(Color.WHITE)
         }else{
             holder.itemView.constraintLayoutHolder.setBackgroundColor(holder.itemView.context.resources.getColor(
-                R.color.colorAccent))
+                R.color.primaryColor))
         }
         holder.itemView.setOnClickListener {
 

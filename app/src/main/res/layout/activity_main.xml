@@ -31,14 +31,14 @@
                 android:name="androidx.navigation.fragment.NavHostFragment"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:background="@color/colorPrimary"
+                android:background="@color/primaryLightColor"
                 app:defaultNavHost="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/weather_recycler_view"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintVertical_bias="1.0"
                 app:navGraph="@navigation/navigation" />
 
             <ImageButton
@@ -49,7 +49,7 @@
                 android:layout_margin="6dp"
                 android:layout_marginTop="28dp"
                 android:layout_marginEnd="4dp"
-                android:alpha="0.4"
+                android:alpha="0.7"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btnMyLocationTemp"
                 app:srcCompat="@mipmap/ic_launcher_edit_text" />
@@ -60,7 +60,7 @@
                 android:layout_height="50dp"
                 android:layout_margin="6dp"
                 android:layout_marginEnd="4dp"
-                android:alpha="0.4"
+                android:alpha="0.7"
                 android:contentDescription="@string/lalala"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -76,8 +76,22 @@
                 android:contentDescription="@string/lalala"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:alpha="0.4"
+                android:alpha="0.7"
                 app:srcCompat="@mipmap/ic_launcher_my_location_now" />
+
+            <ImageButton
+                android:id="@+id/btnNotifications"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="6dp"
+                android:layout_marginEnd="24dp"
+                android:alpha="0.7"
+                android:contentDescription="@string/lalala"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.976"
+                app:srcCompat="@mipmap/ic_notifications_off" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
